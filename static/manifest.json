@@ -3,6 +3,7 @@
   "description": "My basic Chrome extension",
   "version": "0.1.0",
   "manifest_version": 3,
+  "minimum_chrome_version": "116",
   "background": {
     "service_worker": "serviceWorker.js"
   },
@@ -12,7 +13,7 @@
       "js": ["contentScript.js"]
     }
   ],
-  "permissions": ["storage", "scripting"],
+  "permissions": ["storage", "scripting", "sidePanel", "contextMenus"],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true

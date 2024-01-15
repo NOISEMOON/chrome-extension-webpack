@@ -9,8 +9,14 @@
 <body>
   <div class="container">
     <h1>Translate with Gemini Pro</h1>
-    <p id="originalText">Original Text</p>
-    <b id="translatedText">Translated Text</b>
+    <textarea id="originalText" rows="20" cols="60" placeholder="Original text"></textarea>
+    <b id="translatedText" style="margin-top: 1em;">Translated Text</b>
+    <!-- <label for="targetLanguage">Traget languae:</label> -->
+    <select id="targetLanguage" style="margin-top: 1em;">
+      <option value="English">English</option>
+      <option value="Chinese">Chinese</option>
+    </select>
+    <button id="translateButton" style="margin-top: 1em;">Translate</button>
   </div>
   <script src="sidePanel.js"></script>
 </body>

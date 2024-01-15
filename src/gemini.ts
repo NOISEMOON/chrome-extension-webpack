@@ -27,12 +27,12 @@ const safetySettings = [
     },
 ];
 
-export async function callGeminiProAPI(input: string, API_KEY: string) {
+export async function callGeminiProAPI(input: string, targetLanguage: string, API_KEY: string) {
     const genAI = new GoogleGenerativeAI(API_KEY);
     const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
     const parts = [
-        { text: "Tranlsate this text to Chinese: \n" + input },
+        { text: "Tranlsate this text to " + targetLanguage + ": \n" + input },
     ];
 
     const result = await model.generateContent({

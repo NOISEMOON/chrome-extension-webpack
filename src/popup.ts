@@ -10,9 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
   translateButton.addEventListener('click', async function () {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       const activeTab = tabs[0];
-      chrome.tabs.sendMessage(activeTab.id, { action: 'translateSelectedText' }, async function (response) {
-        // TODO
-      });
+      chrome.tabs.sendMessage(activeTab.id, { type: 'read-selected-text' });
     });
     
   });

@@ -1,10 +1,17 @@
 import { initializeStorageWithDefaults } from './storage';
 
+function setupContextMenu() {
+  chrome.contextMenus.create({
+    id: 'translate-in-sidepanel',
+    title: 'Translate',
+    contexts: ['selection']
+  });
+}
+
+// Here goes everything you want to execute after extension initialization
 chrome.runtime.onInstalled.addListener(async () => {
-  // Here goes everything you want to execute after extension initialization
-
+  setupContextMenu();
   await initializeStorageWithDefaults({});
-
   console.log('Extension successfully installed!');
 });
 
@@ -17,14 +24,28 @@ chrome.storage.onChanged.addListener((changes) => {
   }
 });
 
-chrome.commands.onCommand.addListener(function (command) {
+chrome.commands.onCommand.addListener(async function (command) {
   if (command === 'translate') {
-    (async () => {
-      const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
-      const response = await chrome.tabs.sendMessage(tab.id, {action: "translateSelectedText"});
-      // do something with response here, not outside the function
-      // console.log(response);
-    })();
-    
+    chrome.tabs.query({ active: true, lastFocusedWindow: true }, async ([tab]) => {
+
+      console.log("enabled = " + chrome.sidePanel.enabled);
+
+      await chrome.sidePanel.open({ tabId: tab.id });
+      
+      await chrome.sidePanel.setOptions({
+        tabId: tab.id,
+        path: 'sidePanel.html',
+        enabled: true
+      });
+      
+      // await chrome.tabs.sendMessage(tab.id, { type: 'read-selected-text' });
+    });
   }
+});
+
+chrome.contextMenus.onClicked.addListener((data) => {
+  chrome.runtime.sendMessage({
+    type: 'translate-in-sidepanel',
+    data: { value: data.selectionText }
+  });
 });

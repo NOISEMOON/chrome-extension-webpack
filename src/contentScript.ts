@@ -1,19 +1,9 @@
-import { callGeminiProAPI } from './gemini';
-
-chrome.runtime.onMessage.addListener(async function (request, sender, sendResponse) {
-    if (request.action === 'translateSelectedText') {
-        console.log("translate ...")
+chrome.runtime.onMessage.addListener(async function (message, sender, sendResponse) {
+    if (message.type === 'read-selected-text') {
         const selectedText = window.getSelection().toString();
-        if (selectedText === "") {
-            alert("Empty input");
-            return;
-        }
-        chrome.storage.local.get("apiKey", async function (data) {
-            const apiKey = data.apiKey;
-            const translation = await callGeminiProAPI(selectedText, apiKey);
-            alert(translation);
-            // sendResponse({ translation: translation });
+        chrome.runtime.sendMessage({
+            type: 'translate-in-sidepanel',
+            data: { value: selectedText }
         });
-        return;
     }
 });

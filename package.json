@@ -1,7 +1,7 @@
 {
-  "name": "chrome-extension-webpack",
+  "name": "translate-with-gemini-pro",
   "version": "0.2.0",
-  "description": "Get started with Chrome extensions development using webpack, Typescript, Sass, and more",
+  "description": "Translate with Gemini Pro",
   "scripts": {
     "start": "webpack --watch --config webpack.dev.cjs",
     "build": "webpack --config webpack.prod.cjs",

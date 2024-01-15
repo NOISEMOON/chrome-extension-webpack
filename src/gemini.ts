@@ -32,7 +32,7 @@ export async function callGeminiProAPI(input: string, API_KEY: string) {
     const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
     const parts = [
-        { text: "翻译：\"" + input + "\"" },
+        { text: "Tranlsate this text to Chinese: \n" + input },
     ];
 
     const result = await model.generateContent({
@@ -42,7 +42,5 @@ export async function callGeminiProAPI(input: string, API_KEY: string) {
     });
 
     const response = result.response;
-    console.log(response.text())
-    console.log("complete");
     return response.text();
 }

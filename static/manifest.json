@@ -1,6 +1,6 @@
 {
-  "name": "chrome-extension-webpack",
-  "description": "My basic Chrome extension",
+  "name": "translate-with-gemini-pro",
+  "description": "Translate with Gemini Pro",
   "version": "0.1.0",
   "manifest_version": 3,
   "minimum_chrome_version": "116",
@@ -17,6 +17,9 @@
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
+  },
+  "side_panel": {
+    "default_path": "sidePanel.html"
   },
   "action": {
     "default_title": "My basic Chrome extension",

@@ -8,10 +8,12 @@ chrome.runtime.onMessage.addListener(async function (request, sender, sendRespon
             alert("Empty input");
             return;
         }
-        chrome.storage.local.get("apiKey", async function(data) {
+        chrome.storage.local.get("apiKey", async function (data) {
             const apiKey = data.apiKey;
             const translation = await callGeminiProAPI(selectedText, apiKey);
             alert(translation);
+            // sendResponse({ translation: translation });
         });
+        return;
     }
 });

@@ -13,7 +13,7 @@
       "js": ["contentScript.js"]
     }
   ],
-  "permissions": ["storage", "scripting", "sidePanel", "contextMenus"],
+  "permissions": ["commands", "storage", "scripting", "sidePanel", "contextMenus"],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
@@ -26,6 +26,14 @@
       "32": "/icons/32x.png",
       "48": "/icons/48x.png",
       "128": "/icons/128x.png"
+    }
+  },
+  "commands": {
+    "translate": {
+      "suggested_key": {
+        "default": "Ctrl+0"
+      },
+      "description": "Translate"
     }
   },
   "icons": {

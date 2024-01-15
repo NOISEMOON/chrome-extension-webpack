@@ -16,3 +16,15 @@ chrome.storage.onChanged.addListener((changes) => {
     );
   }
 });
+
+chrome.commands.onCommand.addListener(function (command) {
+  if (command === 'translate') {
+    (async () => {
+      const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+      const response = await chrome.tabs.sendMessage(tab.id, {action: "translateSelectedText"});
+      // do something with response here, not outside the function
+      // console.log(response);
+    })();
+    
+  }
+});

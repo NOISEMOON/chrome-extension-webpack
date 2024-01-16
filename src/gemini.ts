@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
+import { ActionTypeEnum } from "./constant";
 
 const MODEL_NAME = "gemini-pro";
 const generationConfig = {
@@ -11,28 +12,28 @@ const generationConfig = {
 const safetySettings = [
     {
         category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        threshold: HarmBlockThreshold.BLOCK_NONE,
     },
     {
         category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        threshold: HarmBlockThreshold.BLOCK_NONE,
     },
     {
         category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        threshold: HarmBlockThreshold.BLOCK_NONE,
     },
     {
         category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        threshold: HarmBlockThreshold.BLOCK_NONE,
     },
 ];
 
-export async function callGeminiProAPI(input: string, actionType: string, targetLanguage: string, API_KEY: string) {
+export async function callGeminiProAPI(input: string, actionType: ActionTypeEnum, targetLanguage: string, API_KEY: string) {
     const genAI = new GoogleGenerativeAI(API_KEY);
     const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
     let text = input;
-    if (actionType === "Translate") {
+    if (actionType === ActionTypeEnum.TRANSLATE) {
         text = "Tranlsate this text to " + targetLanguage + ": \n" + input;
     } 
 
@@ -46,6 +47,6 @@ export async function callGeminiProAPI(input: string, actionType: string, target
         safetySettings,
     });
 
-    const response = result.response;
-    return response.text();
+    const aiResponse = result.response.text();
+    return aiResponse;
 }

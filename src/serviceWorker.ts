@@ -1,3 +1,4 @@
+import { CommandTypeEnum, MessageTypeEnum } from './constant';
 import { initializeStorageWithDefaults } from './storage';
 
 function setupContextMenu() {
@@ -24,28 +25,23 @@ chrome.storage.onChanged.addListener((changes) => {
   }
 });
 
+// open sidepanel
 chrome.commands.onCommand.addListener(async function (command) {
-  if (command === 'translate') {
+  if (command === CommandTypeEnum.TRANSLATE) {
     chrome.tabs.query({ active: true, lastFocusedWindow: true }, async ([tab]) => {
-
-      console.log("enabled = " + chrome.sidePanel.enabled);
-
       await chrome.sidePanel.open({ tabId: tab.id });
-      
       await chrome.sidePanel.setOptions({
         tabId: tab.id,
         path: 'sidePanel.html',
         enabled: true
       });
-      
-      // await chrome.tabs.sendMessage(tab.id, { type: 'read-selected-text' });
     });
   }
 });
 
 chrome.contextMenus.onClicked.addListener((data) => {
   chrome.runtime.sendMessage({
-    type: 'translate-in-sidepanel',
+    type: MessageTypeEnum.TRANSLATE,
     data: { value: data.selectionText }
   });
 });

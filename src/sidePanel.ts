@@ -1,9 +1,10 @@
+import { ActionTypeEnum, MessageTypeEnum } from './constant';
 import { callGeminiProAPI } from './gemini';
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-    if (message.type === 'translate-in-sidepanel') {
+    if (message.type === MessageTypeEnum.TRANSLATE) {
         const input = message.data.value;
-        doGenerate(input, "Translate");
+        doGenerate(input, ActionTypeEnum.TRANSLATE);
     }
 });
 
@@ -16,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-function doGenerate(input: string, actionType: string) {
+function doGenerate(input: string, actionType: ActionTypeEnum) {
     const targetLanguage = document.body.querySelector('#targetLanguage').value;
     document.body.querySelector('#originalText').value = input;
     document.body.querySelector('#aiResult').innerText = "Generating..."

@@ -1,8 +1,10 @@
+import { MessageTypeEnum } from "./constant";
+
 chrome.runtime.onMessage.addListener(async function (message, sender, sendResponse) {
-    if (message.type === 'read-selected-text') {
+    if (message.type === MessageTypeEnum.SELECT_TEXT) {
         const selectedText = window.getSelection().toString();
         chrome.runtime.sendMessage({
-            type: 'translate-in-sidepanel',
+            type: MessageTypeEnum.TRANSLATE,
             data: { value: selectedText }
         });
     }

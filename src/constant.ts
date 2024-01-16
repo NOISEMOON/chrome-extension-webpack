@@ -1,10 +1,15 @@
 export enum MessageTypeEnum {
-    TRANSLATE = "translate",
-    SELECT_TEXT = "select-text",
+    GENERATE = "generate",
+    SELECT_TEXT = "select_text",
+}
+
+export enum TargetLanguageEnum {
+    CHINESE = "Chinese",
+    ENGLISH = "English",
 }
 
 export enum CommandTypeEnum {
-    TRANSLATE = "translate"
+    OPEN_SIDEPANEL = "open_sidepanel"
 }
 
 export enum ActionTypeEnum {

@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
-import { ActionTypeEnum } from "./constant";
+import { ActionTypeEnum, TargetLanguageEnum } from "./constant";
 
 const MODEL_NAME = "gemini-pro";
 const generationConfig = {
@@ -28,7 +28,7 @@ const safetySettings = [
     },
 ];
 
-export async function callGeminiProAPI(input: string, actionType: ActionTypeEnum, targetLanguage: string, API_KEY: string) {
+export async function callGeminiProAPI(input: string, actionType: ActionTypeEnum, targetLanguage: TargetLanguageEnum, API_KEY: string) {
     const genAI = new GoogleGenerativeAI(API_KEY);
     const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 

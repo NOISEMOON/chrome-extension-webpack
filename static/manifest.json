@@ -32,11 +32,11 @@
     }
   },
   "commands": {
-    "translate": {
+    "open_sidepanel": {
       "suggested_key": {
         "default": "Ctrl+0"
       },
-      "description": "Translate"
+      "description": "Open sidepanel"
     }
   },
   "icons": {

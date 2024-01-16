@@ -9,14 +9,27 @@
 <body>
   <div class="container">
     <h1>Translate with Gemini Pro</h1>
-    <textarea id="originalText" rows="20" cols="60" placeholder="Original text"></textarea>
-    <b id="translatedText" style="margin-top: 1em;">Translated Text</b>
-    <!-- <label for="targetLanguage">Traget languae:</label> -->
-    <select id="targetLanguage" style="margin-top: 1em;">
-      <option value="English">English</option>
-      <option value="Chinese">Chinese</option>
-    </select>
-    <button id="translateButton" style="margin-top: 1em;">Translate</button>
+    <div>
+      <textarea id="originalText" rows="20" cols="60" placeholder="Original text"></textarea>
+    </div>
+    <div>
+      <b id="aiResult" style="margin-top: 1em;">Result</b>
+    </div>
+    <div>
+      <label for="actionType">Action type</label>
+      <select id="actionType" style="margin-top: 1em;width: 100px;height: 20px;">
+        <option value="Translate">Translate</option>
+        <option value="Ask">Ask</option>
+      </select>
+    </div>
+    <div>
+      <label for="targetLanguage">Traget languae</label>
+      <select id="targetLanguage" style="margin-top: 1em;width: 100px;height: 20px;">
+        <option value="Chinese">Chinese</option>
+        <option value="English">English</option>
+      </select>
+    </div>
+    <button id="submitButton" style="margin-top: 1em;">Submit</button>
   </div>
   <script src="sidePanel.js"></script>
 </body>
